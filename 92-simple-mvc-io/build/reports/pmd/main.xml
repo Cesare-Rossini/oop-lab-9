@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 https://pmd.github.io/schema/report_2_0_0.xsd" version="7.28.0" timestamp="2026-11-17T16:27:02.094">
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 https://pmd.github.io/schema/report_2_0_0.xsd" version="7.28.0" timestamp="2026-11-17T17:40:56.991">
+<file name="C:\Users\cesare.rossini\Downloads\lab09\lab09\92-simple-mvc-io\src\main\java\it\unibo\mvc\SimpleGUI.java">
+<violation beginline="42" endline="42" begincolumn="36" endcolumn="45" rule="AvoidCatchingGenericException" ruleset="Error Prone" package="it.unibo.mvc" class="SimpleGUI" method="actionPerformed" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.28.0/pmd_rules_java_errorprone.html#avoidcatchinggenericexception" priority="3">
+Avoid catching Exception in try-catch block
+</violation>
+</file>
+<file name="C:\Users\cesare.rossini\Downloads\lab09\lab09\92-simple-mvc-io\src\main\java\it\unibo\mvc\SimpleGUIWithFileChooser.java">
+<violation beginline="72" endline="72" begincolumn="30" endcolumn="39" rule="AvoidCatchingGenericException" ruleset="Error Prone" package="it.unibo.mvc" class="SimpleGUIWithFileChooser" method="actionPerformed" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.28.0/pmd_rules_java_errorprone.html#avoidcatchinggenericexception" priority="3">
+Avoid catching Exception in try-catch block
+</violation>
+</file>
 </pmd>

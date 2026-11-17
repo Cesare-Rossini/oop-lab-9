@@ -11,20 +11,23 @@ import java.nio.charset.StandardCharsets;
 /**
  * Application controller. Performs the I/O.
  */
-public class Controller {
+public final class Controller {
 
     public static final String HOME = System.getProperty("home");
 
     private File currentFile = new File(HOME + File.separator + "output.txt");
 
+    /* */
     public File getFile() {
         return currentFile;
     }
 
+    /* */
     public String getFilePath() {
         return currentFile.getPath();
     }
 
+    /* */
     public void saveString(final String input) {
         try (PrintStream ps = new PrintStream(currentFile, StandardCharsets.UTF_8)) {
             ps.print(input);
@@ -33,6 +36,7 @@ public class Controller {
         }
     }
 
+    /* */
     public void setFile(final String path) {
         currentFile = new File(path);
     }

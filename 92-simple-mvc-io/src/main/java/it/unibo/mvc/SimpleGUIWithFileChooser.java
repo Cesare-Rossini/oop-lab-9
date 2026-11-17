@@ -6,11 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.JFileChooser;
 import java.io.File;
-import java.io.IOException;
-import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -23,17 +19,16 @@ import java.awt.event.ActionListener;
  * 
  */
 public final class SimpleGUIWithFileChooser {
-    
-    
     private static final String TITLE = "Slightly less simple GUI";
     private static final int PROPORTION = 5;
     private final JFrame frame = new JFrame(TITLE);
 
+    /* */
     public SimpleGUIWithFileChooser(final Controller controller) {
         final JPanel canvas = new JPanel();
         final JPanel topBar = new JPanel();
         final JTextField pathField = new JTextField(controller.getFilePath());
-        final JTextArea mainArea= new JTextArea();
+        final JTextArea mainArea = new JTextArea();
         final JButton save = new JButton("Save on file");
         final JButton browse = new JButton("Browse...");
         pathField.setEditable(false);
@@ -46,15 +41,28 @@ public final class SimpleGUIWithFileChooser {
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        /* */
         browse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 final JFileChooser fc = new JFileChooser("Choose where to save:");
                 fc.setSelectedFile(controller.getFile());
-                
+                final int choice = fc.showSaveDialog(frame);
+                switch (choice) {
+                    case JFileChooser.APPROVE_OPTION:
+                        final File newPath = fc.getSelectedFile();
+                        controller.setFile(newPath.getPath());
+                        pathField.setText(newPath.getPath());
+                        break;
+                    case JFileChooser.CANCEL_OPTION:
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(frame, choice, "Something went wrong", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
+        /* */
         save.addActionListener(
             new ActionListener() {
                 @Override
@@ -70,7 +78,8 @@ public final class SimpleGUIWithFileChooser {
         );
     }
 
-     private void display() {
+    /* */
+    private void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
@@ -79,6 +88,7 @@ public final class SimpleGUIWithFileChooser {
         frame.setVisible(true);
     }
 
+    /* */
     public static void main() {
         final SimpleGUIWithFileChooser gui = new SimpleGUIWithFileChooser(new Controller());
         gui.display();
