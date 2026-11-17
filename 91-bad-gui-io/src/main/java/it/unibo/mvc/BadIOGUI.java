@@ -77,7 +77,7 @@ public class BadIOGUI {
          * enough for a single screen setup. In case of multiple monitors, the
          * primary is selected. In order to deal coherently with multimonitor
          * setups, other facilities exist (see the Java documentation about this
-         * issue). It is MUCH better than manually specify the size of a window
+         * issue). It is MUCH better than manually specifying the size of a window
          * in pixel: it takes into account the current resolution.
          */
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
