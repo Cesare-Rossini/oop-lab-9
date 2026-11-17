@@ -1,12 +1,13 @@
 package it.unibo.mvc;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-
+import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.BoxLayout;
@@ -31,7 +32,7 @@ public final class SimpleGUIWithFileChooser {
     public SimpleGUIWithFileChooser(final Controller controller) {
         final JPanel canvas = new JPanel();
         final JPanel topBar = new JPanel();
-        final JTextField pathField = new JTextField();
+        final JTextField pathField = new JTextField(controller.getFilePath());
         final JTextArea mainArea= new JTextArea();
         final JButton save = new JButton("Save on file");
         final JButton browse = new JButton("Browse...");
@@ -45,7 +46,14 @@ public final class SimpleGUIWithFileChooser {
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        final JTextField filepath = new JTextField(controller.getFilePath());
+        browse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                final JFileChooser fc = new JFileChooser("Choose where to save:");
+                fc.setSelectedFile(controller.getFile());
+                
+            }
+        });
 
         save.addActionListener(
             new ActionListener() {
