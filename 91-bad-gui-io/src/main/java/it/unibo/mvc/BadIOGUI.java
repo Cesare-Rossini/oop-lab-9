@@ -43,7 +43,15 @@ public class BadIOGUI {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
-        canvas.add(write, BorderLayout.CENTER);
+        /*canvas.add(write, BorderLayout.CENTER);             overwritten by Ex 01.01 */
+        //Start of section added by exercise
+        final JPanel newPanel = new JPanel();
+        newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.X_AXIS));
+        canvas.add(newPanel, BorderLayout.CENTER);
+        newPanel.add(write);
+        final JButton read = new JButton("Read the file");
+        newPanel.add(read);
+        //End of added section
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
@@ -69,6 +77,22 @@ public class BadIOGUI {
                 }
             }
         );
+
+        read.addActionListener(
+            new ActionListener() {
+                @Override 
+                public void actionPerformed(final ActionEvent ignored) {
+                    try {
+                        final List<String> lines = Files.readAllLines(new File(PATH).toPath());
+                        for (final String line : lines) {
+                            IO.println(line);
+                        }
+                    } catch (final IOException e) {
+                        IO.println("Errore");
+                    }
+                }
+            }
+        );
     }
 
     private void display() {
@@ -90,6 +114,7 @@ public class BadIOGUI {
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
+        frame.pack();
         /*
          * OK, ready to push the frame onscreen
          */
@@ -98,8 +123,8 @@ public class BadIOGUI {
 
     /**
      * Launches the application.
-     */
+     */ 
     public static void main() {
-       new BadIOGUI().display();
+        new BadIOGUI().display();
     }
 }
